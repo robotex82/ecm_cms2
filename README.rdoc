@@ -1,0 +1,66 @@
+= ECM Module Template
+
+= End-User documentation
+
+Please look at the[link:doc] Folder.
+
+
+= Prerequisites
+
+= Installation
+
+Add it to your bundle:
+
+  # Gemfile:
+  gem 'ecm_cms2'
+
+Install your bundle:
+
+  > bundle install
+
+Install the intializer:
+
+  > rails g ecm:cms:install
+
+Install the locales
+
+  > rails g ecm:cms:locales
+
+Generate migrations and migrate:
+
+  > rake ecm_cms_engine:install:migrations
+  > rake db:migrate
+
+= Configuring localized routing
+
+Add the routes to your routing file:
+
+  # config/routes.rb:
+  localized do
+    Ecm::Cms::Routing.routes(self)
+  end
+  root to: redirect("/#{I18n.locale}")
+
+= Optional: Generating example/default data
+
+There is a task to prepopulate your database tables with example data.
+
+Warning: *RUNNING THIS WILL DELETE ALL OF YOUR CMS DATA AND REPLACE IT WITH EXAMPLE DATA!*
+
+  > rake ecm:cms:db:populate!
+
+= Linking to pages
+
+    <%= link_to 'My Page', page_path(i18n_locale: I18n.locale, page: 'my-page') %>
+
+= Using partials form the database in other controllers
+
+    # app/controllers/application_controller.rb
+    class ApplicationController < ActionController::Base
+      prepend_view_path ::Ecm::Cms::PartialResolver.instance
+      ...
+    end
+
+= License
+
+This project rocks and uses MIT-LICENSE.
