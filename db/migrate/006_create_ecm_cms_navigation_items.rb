@@ -5,6 +5,7 @@ class CreateEcmCmsNavigationItems < ActiveRecord::Migration
       t.string :url
       t.string :key
       t.string :options
+      t.text   :properties, null: true
 
       # associations
       t.references :ecm_cms_navigation
@@ -12,7 +13,7 @@ class CreateEcmCmsNavigationItems < ActiveRecord::Migration
 
       # awesome nested set
       t.references :parent
-      t.integer :children_count, :default => 0, :null => false
+      t.integer :children_count, default: 0, null: false
       t.integer :lft
       t.integer :rgt
       t.integer :depth
