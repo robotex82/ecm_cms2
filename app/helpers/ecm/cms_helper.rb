@@ -29,6 +29,7 @@ module Ecm::CmsHelper
 
   def build_navigation_item(navigation, item, container_css_class)
     options = {}
+    options[:highlights_on] = /#{item.highlights_on}/ if item.highlights_on.present?
     options = item.li_attributes.marshal_dump.delete_if {|key, value| value.blank? }
 
     navigation.dom_class = container_css_class

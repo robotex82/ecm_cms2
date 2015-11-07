@@ -1,6 +1,6 @@
 module Ecm::Cms
   class NavigationItem < ActiveRecord::Base
-    include LiAttributes
+    include Properties
 
     # associations
     belongs_to :ecm_cms_navigation,

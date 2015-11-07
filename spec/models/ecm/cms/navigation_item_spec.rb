@@ -18,6 +18,7 @@ module Ecm
 
       context 'properties' do
         it { should respond_to(:li_attributes) }
+        it { should respond_to(:highlights_on) }
       end
 
       context 'li_attributes' do
