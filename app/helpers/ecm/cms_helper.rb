@@ -1,13 +1,13 @@
 module Ecm::CmsHelper
   def cms_render_navigation(name, options = {})
-    options.reverse_merge! renderer: :bootstrap, expand_all: true, levels: 1
+    options.reverse_merge! renderer: :bootstrap, expand_all: true, level: 1
 
-    levels              = options.delete(:levels)
+    level               = options.delete(:level)
     expand_all          = options.delete(:expand_all)
     container_css_class = options.delete(:container_css_class)
     renderer            = options.delete(:renderer)
 
-    levels_as_array = (levels).is_a?(Range) ? levels.to_a : [levels]
+    level_as_array = (level).is_a?(Range) ? level.to_a : [level]
 
     navigation = Ecm::Cms::Navigation.where(:name => name.to_s, :locale => I18n.locale.to_s).first
     unless navigation
@@ -19,30 +19,18 @@ module Ecm::CmsHelper
       return I18n.t('ecm.cms.navigation.messages.empty', :lang => I18n.locale.to_s, :name => name)
     end
 
-    depth = 1
-
-    render_navigation(levels: levels, expand_all: expand_all, renderer: renderer) do |navigation|
-      navigation.dom_class = container_css_class if levels_as_array.include?(depth)
+    render_navigation(level: level, expand_all: expand_all, renderer: renderer) do |navigation|
+      navigation.dom_class = container_css_class
       roots.each do |navigation_item|
         build_navigation_item(navigation, navigation_item, container_css_class)
       end
     end
   end
 
-  def _evaled_options(option_string)
-    options = {}
-    begin
-      evaled_options = eval(option_string)
-      options.merge! evaled_options
-    rescue
-      logger.debug "Invalid navigation item options: #{item.options}"
-    ensure
-      return options
-    end
-  end
-
   def build_navigation_item(navigation, item, container_css_class)
-    options = _evaled_options(item.options)
+    options = {}
+    options[:highlights_on] = /#{item.highlights_on}/ if item.highlights_on.present?
+    options = item.li_attributes.marshal_dump.delete_if {|key, value| value.blank? }
 
     navigation.dom_class = container_css_class
     if item.children.present?
@@ -56,4 +44,3 @@ module Ecm::CmsHelper
     end
   end
 end
-

@@ -8,7 +8,10 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
                 :options,
                 :parent_id,
                 :string,
-                :url) if Rails.version >= '4.0.0'
+                :url,
+                *Ecm::Cms::Configuration.navigation_item_properties,
+                :highlights_on
+  )
 
   sortable_tree_member_actions
 
@@ -30,6 +33,16 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
     f.inputs do
       f.input :key
       f.input :options
+    end
+
+    f.inputs Ecm::Cms::NavigationItem.human_attribute_name(:options) do
+      f.input :highlights_on
+    end
+
+    f.inputs Ecm::Cms::NavigationItem.human_attribute_name(:li_attributes) do
+      Ecm::Cms::Configuration.navigation_item_properties.each do |navigation_item_property|
+        f.input navigation_item_property
+      end
     end
 
     f.actions
