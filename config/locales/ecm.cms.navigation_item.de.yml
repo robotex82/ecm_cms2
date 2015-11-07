@@ -10,8 +10,10 @@ de:
         depth: Baumtiefe
         ecm_cms_navigation: Navigation
         ecm_cms_page: Seite
+        data_add_icon: Symbol
         key: Schlüssel
         lft: Links
+        li_attributes: 'Listen-Element Attribute'
         name: Name
         options: Optionen
         parent: Untereintrag von

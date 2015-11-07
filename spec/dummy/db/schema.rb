@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104133728) do
+ActiveRecord::Schema.define(version: 20151104213726) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20151104133728) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "properties"
   end
 
   add_index "ecm_cms_navigation_items", ["ecm_cms_navigation_id"], name: "index_ecm_cms_navigation_items_on_ecm_cms_navigation_id"

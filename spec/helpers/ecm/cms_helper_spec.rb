@@ -32,11 +32,11 @@ module Ecm
       describe 'options' do
         before(:each) do
           @navigation = FactoryGirl.create(:ecm_cms_navigation, locale: I18n.locale)
-          @items = [FactoryGirl.create(:ecm_cms_navigation_item, ecm_cms_navigation: @navigation, options: "{ :html => {:class => 'my_class', :id => 'my_id'} }")]
+          @items = [FactoryGirl.create(:ecm_cms_navigation_item, ecm_cms_navigation: @navigation, data_add_icon: 'foo')]
         end
 
         it 'should be rendered' do
-          expect(helper.cms_render_navigation(@navigation.name)).to match /my_class/
+          expect(helper.cms_render_navigation(@navigation.name)).to match /foo/
         end
       end
     end

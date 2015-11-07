@@ -10,8 +10,10 @@ en:
         depth: tree depth
         ecm_cms_navigation: navigation
         ecm_cms_page: page
+        data_add_icon: icon
         key: key
         lft: left
+        li_attributes: 'list-element attributes'
         name: name
         options: options
         parent: parent

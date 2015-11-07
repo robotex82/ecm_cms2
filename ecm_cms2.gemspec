@@ -5,7 +5,7 @@ require 'ecm/cms/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'ecm_cms'
+  s.name        = 'ecm_cms2'
   s.version     = Ecm::Cms::VERSION
   s.authors     = ['Roberto Vasquez Angel']
   s.email       = ['roberto@vasquez-angel.de']
@@ -33,9 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'activeadmin', '1.0.0.pre2'
   s.add_development_dependency 'devise'
   s.add_development_dependency 'route_translator'
-  # s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'less-rails'
-  # s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'therubyracer'
   s.add_development_dependency 'twitter-bootstrap-rails'
   s.add_development_dependency 'jquery-rails'
@@ -51,5 +49,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rails'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'guard-bundler'
+
+  # Development Tools
+  s.add_development_dependency 'rubocop'
 end
 
