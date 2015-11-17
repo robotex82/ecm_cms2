@@ -30,12 +30,20 @@ module Ecm
       module ClassMethods
       end
 
+      def human
+        "#{self.class.name}: #{path_and_filename}"
+      end
+
       def filename
         filename = basename.dup
         filename << ".#{locale}" if locale.present?
         filename << ".#{format}" if format.present?
         filename << ".#{handler}" if handler.present?
         filename
+      end
+
+      def path_and_filename
+        "#{pathname}#{filename}"
       end
 
       private
