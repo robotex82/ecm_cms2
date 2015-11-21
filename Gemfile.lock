@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ecm_cms2 (1.0.1)
+    ecm_cms2 (1.1.0)
       RedCloth
       active_admin-awesome_nested_set
       awesome_nested_set

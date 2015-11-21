@@ -43,4 +43,8 @@ module Ecm::CmsHelper
       navigation.item item.key, item.name, item.url, options
     end
   end
+
+  def link_to_top
+    render partial: '/ecm/cms/link_to_top'
+  end
 end
