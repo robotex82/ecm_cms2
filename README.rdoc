@@ -1,11 +1,22 @@
-= ECM Module Template
+= ECM CMS 2
 
 = End-User documentation
 
 Please look at the[link:doc] Folder.
 
+= Migrating from 1.x.x to 2.0.0
+
+Add active_admin-awesome_nested_set to your gemfile, if you are using activeadmin:
+
+    # Gemfile
+    gem 'active_admin-awesome_nested_set'
 
 = Prerequisites
+
+if you are using activeadmin as backend, ecm_cms2 comes with admin files to provide a backend. In that case, you'll need active_admin-awesome_nested_set. Add it to your gemfile:
+
+    # Gemfile
+    gem 'active_admin-awesome_nested_set'
 
 = Installation
 
@@ -60,6 +71,13 @@ Warning: *RUNNING THIS WILL DELETE ALL OF YOUR CMS DATA AND REPLACE IT WITH EXAM
       prepend_view_path ::Ecm::Cms::PartialResolver.instance
       ...
     end
+
+= Running specs
+
+    gem install bundler
+    bundle
+    cd spec/dummy && rake db:migrate RAILS_ENV=test && cd ../..
+    guard
 
 = License
 
