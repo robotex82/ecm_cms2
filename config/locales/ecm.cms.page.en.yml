@@ -19,6 +19,7 @@ en:
         layout: layout
         locale: language
         meta_description: meta description
+        path_and_filename: filepath
         pathname: path
         title: title
         updated_at: updated at

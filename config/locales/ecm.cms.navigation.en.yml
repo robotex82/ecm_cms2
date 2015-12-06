@@ -8,6 +8,7 @@ en:
       ecm/cms/navigation:
         created_at: created at
         ecm_cms_navigation_items: navigation items
+        ecm_cms_navigation_items_count: navigation items
         locale: language
         name: name
         slug: friendly id
