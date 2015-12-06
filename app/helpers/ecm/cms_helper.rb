@@ -9,14 +9,14 @@ module Ecm::CmsHelper
 
     level_as_array = (level).is_a?(Range) ? level.to_a : [level]
 
-    navigation = Ecm::Cms::Navigation.where(:name => name.to_s, :locale => I18n.locale.to_s).first
+    navigation = Ecm::Cms::Navigation.where(name: name.to_s, locale: I18n.locale.to_s).first
     unless navigation
-      return I18n.t('ecm.cms.navigation.messages.not_found', {:lang => I18n.locale.to_s, :name => name.to_s})
+      return I18n.t('ecm.cms.navigation.messages.not_found', lang: I18n.locale.to_s, name: name.to_s)
     end
 
     roots = navigation.ecm_cms_navigation_items.roots.all
     if roots.empty?
-      return I18n.t('ecm.cms.navigation.messages.empty', :lang => I18n.locale.to_s, :name => name)
+      return I18n.t('ecm.cms.navigation.messages.empty', lang: I18n.locale.to_s, name: name)
     end
 
     render_navigation(level: level, expand_all: expand_all, renderer: renderer) do |navigation|
@@ -30,7 +30,7 @@ module Ecm::CmsHelper
   def build_navigation_item(navigation, item, container_css_class)
     options = {}
     options[:highlights_on] = /#{item.highlights_on}/ if item.highlights_on.present?
-    options = item.li_attributes.marshal_dump.delete_if {|key, value| value.blank? }
+    options = item.li_attributes.marshal_dump.delete_if { |_key, value| value.blank? }
 
     navigation.dom_class = container_css_class
     if item.children.present?

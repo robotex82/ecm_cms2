@@ -11,19 +11,15 @@ module Ecm::Cms
     end
 
     def highlights_on
-      self.properties.highlights_on ||= nil
+      properties.highlights_on ||= nil
     end
 
-    def highlights_on=(highlights_on)
-      properties.highlights_on = highlights_on
-    end
+    delegate :highlights_on=, to: :properties
 
     def li_attributes
-      self.properties.li_attributes ||= OpenStruct.new
+      properties.li_attributes ||= OpenStruct.new
     end
 
-    def li_attributes=(li_attributes)
-      properties.li_attributes = li_attributes
-    end
+    delegate :li_attributes=, to: :properties
   end
 end

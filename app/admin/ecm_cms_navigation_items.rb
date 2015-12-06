@@ -11,16 +11,16 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
                 :url,
                 *Ecm::Cms::Configuration.navigation_item_properties,
                 :highlights_on
-  )
+               )
 
   sortable_tree_member_actions
 
   # Menu
-  menu :parent => Proc.new { I18n.t('ecm.cms.active_admin.menu') }.call
+  menu parent: proc { I18n.t('ecm.cms.active_admin.menu') }.call
 
   form do |f|
     f.inputs do
-      f.input :ecm_cms_navigation, :collection => Ecm::Cms::Navigation.all.collect { |navigation| [navigation.to_s, navigation.id] }
+      f.input :ecm_cms_navigation, collection: Ecm::Cms::Navigation.all.collect { |navigation| [navigation.to_s, navigation.id] }
       f.input :parent
       f.input :name
     end
@@ -48,7 +48,7 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
     f.actions
   end
 
-  index :as => :nested_set do
+  index as: :nested_set do
     selectable_column
     sortable_tree_columns
     column(:ecm_cms_navigation) { |ni| link_to(ni.ecm_cms_navigation.to_s, [:admin, ni.ecm_cms_navigation]) }
@@ -56,7 +56,7 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
     column :url
     column :ecm_cms_page do |ni|
       if ni.ecm_cms_page.blank?
-        link_to(I18n.t('active_admin.new_model', :model => Ecm::Cms::Page.model_name.human), new_admin_ecm_cms_page_path({:ecm_cms_page => ni.params_for_new_page}))
+        link_to(I18n.t('active_admin.new_model', model: Ecm::Cms::Page.model_name.human), new_admin_ecm_cms_page_path(ecm_cms_page: ni.params_for_new_page))
       else
         link_to(ni.ecm_cms_page.title, [:admin, ni.ecm_cms_page])
       end

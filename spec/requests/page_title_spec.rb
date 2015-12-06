@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "title rendering" do
-  it "adds the title to the page" do
+describe 'title rendering' do
+  it 'adds the title to the page' do
     page_model = Ecm::Cms::Page.create! do |page|
       page.pathname = '/'
       page.basename = 'home'
@@ -11,9 +11,8 @@ describe "title rendering" do
       page.title    = 'This is the title'
       page.body     = '<h1>Home</h1>'
     end
-    get "/en"
+    get '/en'
 
     response.body.should include("<title>#{Ecm::Cms::Configuration.site_title} - #{page_model.title}</title>")
   end
 end
-

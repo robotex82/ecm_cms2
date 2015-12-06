@@ -1,6 +1,5 @@
 module ActionView::Template::Handlers
   class Textile
-
     class_attribute :default_format
     self.default_format = Mime::HTML
 
@@ -12,7 +11,5 @@ module ActionView::Template::Handlers
       compiled_source = erb_handler.call(template)
       "RedCloth.new(begin;#{compiled_source};end).to_html.html_safe"
     end
-
   end
 end
-

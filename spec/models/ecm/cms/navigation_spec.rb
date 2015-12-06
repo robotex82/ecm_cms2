@@ -11,7 +11,7 @@ module Ecm
 
       context 'public methods' do
         context '#to_s' do
-          it "should have the correct format" do
+          it 'should have the correct format' do
             subject.locale = 'en'
             subject.name = 'foo'
             subject.to_s.should eq('foo (en)')

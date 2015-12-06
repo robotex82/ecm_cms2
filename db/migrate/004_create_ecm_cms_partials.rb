@@ -9,7 +9,7 @@ class CreateEcmCmsPartials < ActiveRecord::Migration
       t.string :format
       t.string :handler
 
-      # associations      
+      # associations
       t.references :ecm_cms_folder
 
       t.timestamps

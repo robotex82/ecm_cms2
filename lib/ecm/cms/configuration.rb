@@ -14,7 +14,7 @@ module Ecm
       end
 
       mattr_accessor :default_handlers do
-        HashWithIndifferentAccess.new()
+        HashWithIndifferentAccess.new
       end
 
       mattr_accessor :site_title do

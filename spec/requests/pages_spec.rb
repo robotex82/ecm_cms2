@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe "requesting '/' redirects to the default locale" do
-  it "redirects" do
-    get "/"
+  it 'redirects' do
+    get '/'
     response.should redirect_to("/#{I18n.default_locale}")
   end
 end
 
-describe "localized home page" do
+describe 'localized home page' do
   it "displays the 'home' page content" do
     page_model = Ecm::Cms::Page.create! do |page|
       page.pathname = '/'
@@ -18,13 +18,13 @@ describe "localized home page" do
       page.title    = 'Home'
       page.body     = '<h1>Home</h1>'
     end
-    get "/en"
+    get '/en'
 
     response.body.should include(page_model.body)
   end
 
-  describe "requesting nested page" do
-    it "requesting /foo/bar/baz should succeed" do
+  describe 'requesting nested page' do
+    it 'requesting /foo/bar/baz should succeed' do
       page_model = Ecm::Cms::Page.create! do |page|
         page.pathname = '/foo/bar/'
         page.basename = 'baz'
@@ -34,14 +34,14 @@ describe "localized home page" do
         page.title    = 'Home'
         page.body     = '<h1>Foo/Bar</h1>'
       end
-      get "/en/foo/bar/baz"
+      get '/en/foo/bar/baz'
 
       response.body.should include(page_model.body)
     end
   end
 
-  describe "requesting text template" do
-    it "requesting /de/test.txt should succeed" do
+  describe 'requesting text template' do
+    it 'requesting /de/test.txt should succeed' do
       page_model = Ecm::Cms::Page.create! do |page|
         page.pathname = '/'
         page.basename = 'test'
@@ -50,7 +50,7 @@ describe "localized home page" do
         page.title    = 'Test'
         page.body     = 'Example text template'
       end
-      get "/de/test.txt"
+      get '/de/test.txt'
 
       response.body.should include(page_model.body)
     end
@@ -76,9 +76,8 @@ describe 'page with content blocks' do
       content_block.ecm_cms_content_box = content_box
       content_block.body = 'This is the footer content'
     end
-    get "/de/test"
+    get '/de/test'
 
     response.body.should include(footer_content_block.body)
   end
 end
-

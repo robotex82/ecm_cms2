@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "textile rendering" do
-  it "converts textile to html" do
+describe 'textile rendering' do
+  it 'converts textile to html' do
     page_model = Ecm::Cms::Page.create! do |page|
       page.pathname = '/'
       page.basename = 'foo'
@@ -11,8 +11,8 @@ describe "textile rendering" do
       page.title    = 'Home'
       page.body     = 'h1. Home'
     end
-    get "/en/foo"
+    get '/en/foo'
 
-    response.body.should include("<h1>Home</h1>")
+    response.body.should include('<h1>Home</h1>')
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "content block rendering" do
+describe 'content block rendering' do
   before do
     @content_box = Ecm::Cms::ContentBox.create! do |cb|
       cb.name = 'sidebar'
@@ -25,12 +25,11 @@ describe "content block rendering" do
 
   context 'when rendering the page' do
     before do
-      get "/en/foo"
+      get '/en/foo'
     end # before
 
     it 'should render the content block body' do
-      response.body.should include("<h1>Sidebar</h1>")
+      response.body.should include('<h1>Sidebar</h1>')
     end # it
   end # context 'when rendering the page'
 end # describe "content block rendering"
-

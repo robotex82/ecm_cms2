@@ -5,8 +5,8 @@ class CreateEcmCmsFolders < ActiveRecord::Migration
       t.string :pathname
 
       # associations
-      t.integer :children_count, :default => 0, :null => false
-      t.integer :ecm_cms_templates_count, :default => 0, :null => false
+      t.integer :children_count, default: 0, null: false
+      t.integer :ecm_cms_templates_count, default: 0, null: false
 
       # awesome nested set
       t.references :parent

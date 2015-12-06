@@ -2,7 +2,7 @@ module Ecm
   module Cms
     module Importers
       class NavigationItem
-        def initialize(yaml, option = {})
+        def initialize(yaml, _option = {})
           @navigation_items = nil
           @yaml = YAML.load(yaml)
         end
@@ -15,7 +15,7 @@ module Ecm
 
         def create_navigation_items
           built_navigation_items = []
-          @yaml.each do |navigation_locale, navigation|     
+          @yaml.each do |navigation_locale, navigation|
             navigation.each do |navigation_name, navigation_items_attributes|
               n = find_or_create_navigation(navigation_locale, navigation_name)
               built_navigation_items << create_navigation_items_for_navigation(n, navigation_items_attributes)
@@ -30,7 +30,7 @@ module Ecm
             ni = create_navigation_item(navigation_item_attributes, navigation)
             built_navigation_items << ni
           end
-          return built_navigation_items
+          built_navigation_items
         end
 
         def create_navigation_item(navigation_item_attributes, navigation)
@@ -49,16 +49,13 @@ module Ecm
         end
 
         def find_or_create_navigation(navigation_locale, navigation_name)
-          navigation = Ecm::Cms::Navigation.where(:locale => navigation_locale, :name => navigation_name).first
-          navigation = Ecm::Cms::Navigation.create!(:locale => navigation_locale, :name => navigation_name) if navigation.nil?
+          navigation = Ecm::Cms::Navigation.where(locale: navigation_locale, name: navigation_name).first
+          navigation = Ecm::Cms::Navigation.create!(locale: navigation_locale, name: navigation_name) if navigation.nil?
           navigation
         end
 
-        def yaml
-          @yaml
-        end
+        attr_reader :yaml
       end
     end
   end
 end
-

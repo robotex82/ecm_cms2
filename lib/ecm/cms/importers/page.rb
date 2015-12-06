@@ -2,7 +2,7 @@ module Ecm
   module Cms
     module Importers
       class Page
-        def initialize(yaml, option = {})
+        def initialize(yaml, _option = {})
           @pages = nil
           @yaml = YAML.load(yaml)
         end
@@ -21,8 +21,8 @@ module Ecm
         def extract_navigation_items(navigation_item_data)
           navigation_items = []
           navigation_item_data.each do |nid|
-            navigation = Ecm::Cms::Navigation.where(:locale => nid['navigation_locale'], :name => nid['navigation_name']).first
-            navigation_items << navigation.ecm_cms_navigation_items.where(:name => nid['name']).first if navigation.respond_to?(:ecm_cms_navigation_items)
+            navigation = Ecm::Cms::Navigation.where(locale: nid['navigation_locale'], name: nid['navigation_name']).first
+            navigation_items << navigation.ecm_cms_navigation_items.where(name: nid['name']).first if navigation.respond_to?(:ecm_cms_navigation_items)
           end
           navigation_items
         end
@@ -31,11 +31,8 @@ module Ecm
           @pages ||= build_pages
         end
 
-        def yaml
-          @yaml
-        end
+        attr_reader :yaml
       end
     end
   end
 end
-

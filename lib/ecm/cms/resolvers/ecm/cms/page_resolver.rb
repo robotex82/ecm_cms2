@@ -20,12 +20,10 @@ module Ecm
         content_for_title = "<% content_for :title do %>#{record.title}<% end %>"
         content_for_meta_description = "<% content_for :meta_description do %>#{record.meta_description}<% end %>"
         output << content_for_title << content_for_meta_description
-        
-        unless record.body.nil?
-          output << record.body
-        end
 
-        return output
+        output << record.body unless record.body.nil?
+
+        output
       end
 
       def normalize_basename(basename)
@@ -42,4 +40,3 @@ module Ecm
     end
   end
 end
-

@@ -1,6 +1,5 @@
 module Ecm::Cms
   class ImportPartialsService
-
     class PartialInFileSystem
       def initialize(filename, view_path)
         @filename = filename
@@ -19,26 +18,18 @@ module Ecm::Cms
         locale = File.basename(relative_filename).split('.')[-3]
         if I18n.available_locales.map(&:to_s).include?(locale)
           @locale ||= locale
-        else
-          nil
         end
       end
 
       def format
         format = File.basename(relative_filename).split('.')[-2]
-        if Mime::SET.symbols.map(&:to_s).include?(format)
-          @format ||= format
-        else
-          nil
-        end
+        @format ||= format if Mime::SET.symbols.map(&:to_s).include?(format)
       end
 
       def handler
         handler = File.basename(relative_filename).split('.').last
         if ActionView::Template::Handlers.extensions.map(&:to_s).include?(handler)
           @handler ||= handler
-        else
-          nil
         end
       end
 
@@ -67,9 +58,7 @@ module Ecm::Cms
         @relative_filename ||= @filename.gsub(view_path.to_s, '')
       end
 
-      def view_path
-        @view_path
-      end
+      attr_reader :view_path
     end
 
     def self.call(*args)
@@ -77,7 +66,7 @@ module Ecm::Cms
     end
 
     def initialize(options = {})
-      options.reverse_merge!({ view_path: Rails.root.join(*%w(app views)) })
+      options.reverse_merge!(view_path: Rails.root.join(*%w(app views)))
       @view_path = options[:view_path]
     end
 
@@ -107,8 +96,6 @@ module Ecm::Cms
       Dir.glob("#{view_path}/**/_*.*")
     end
 
-    def view_path
-      @view_path
-    end
+    attr_reader :view_path
   end
 end

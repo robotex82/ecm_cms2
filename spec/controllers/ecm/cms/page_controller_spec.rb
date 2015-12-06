@@ -15,8 +15,8 @@ module Ecm
           end
         end
 
-        it "should succeed" do
-          get :respond, { :page => '/foo', :locale => 'de' }
+        it 'should succeed' do
+          get :respond, page: '/foo', locale: 'de'
           response.code.should eq('200')
         end
       end
@@ -33,12 +33,11 @@ module Ecm
           end
         end
 
-        it "should succeed" do
-          get :respond, { :page => '/foo/bar', :locale => 'de' }
+        it 'should succeed' do
+          get :respond, page: '/foo/bar', locale: 'de'
           response.code.should eq('200')
         end
       end
     end
   end
 end
-

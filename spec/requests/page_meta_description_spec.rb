@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "meta description rendering" do
-  it "adds the meta description to the page" do
+describe 'meta description rendering' do
+  it 'adds the meta description to the page' do
     page_model = Ecm::Cms::Page.create! do |page|
       page.pathname            = '/'
       page.basename            = 'home'
@@ -12,9 +12,8 @@ describe "meta description rendering" do
       page.meta_description    = 'This is the meta description'
       page.body                = '<h1>Home</h1>'
     end
-    get "/en"
+    get '/en'
 
     response.body.should include("<meta name=\"description\" content=\"#{page_model.meta_description}\">")
   end
 end
-

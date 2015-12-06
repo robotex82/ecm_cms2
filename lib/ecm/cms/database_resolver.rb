@@ -15,29 +15,29 @@ module Ecm
         return [] unless resolve(partial)
 
         conditions = {
-          :pathname    => assert_slashs(prefix.to_s),
-          :basename    => normalize_basename(name),
-          :locale      => normalize_array(details[:locale]).first,
-          :format      => normalize_array(details[:formats]).first,
-          :handler     => normalize_array(details[:handlers])
+          pathname: assert_slashs(prefix.to_s),
+          basename: normalize_basename(name),
+          locale: normalize_array(details[:locale]).first,
+          format: normalize_array(details[:formats]).first,
+          handler: normalize_array(details[:handlers])
         }
 
         format = conditions.delete(:format)
         locale = conditions.delete(:locale)
-        
-        query  = self.template_class.constantize.where(conditions)
+
+        query  = template_class.constantize.where(conditions)
 
         # 2) Check for templates with the given format or format is nil
         query = query.where(["format = ? OR format = ''", format])
 
         # 3) Ensure templates with format come first
-        query = query.order("format DESC")
+        query = query.order('format DESC')
 
         # 4) Check for templates with the given locale or locale is nil
         query = query.where(["locale = ? OR locale = ''", locale])
 
         # 5) Ensure templates with locale come first
-        query = query.order("locale DESC")
+        query = query.order('locale DESC')
 
         # 6) Now trigger the query passing on conditions to initialization
         query.map do |record|
@@ -58,9 +58,9 @@ module Ecm
         format ||= details[:formats]
 
         details = {
-          :format => format,
-          :updated_at => record.updated_at,
-          :virtual_path => "#{record.pathname}#{record.basename}"
+          format: format,
+          updated_at: record.updated_at,
+          virtual_path: "#{record.pathname}#{record.basename}"
         }
 
         details[:layout] = record.layout if record.respond_to?(:layout) && record.layout.present?
@@ -72,7 +72,7 @@ module Ecm
         output = prefix.dup
         output << '/' unless output.end_with?('/')
         output = '/' << output unless output.start_with?('/')
-        return output
+        output
       end
 
       # Normalize arrays by converting all symbols to strings.
@@ -81,21 +81,20 @@ module Ecm
       end
 
       def build_source
-        raise "call to abstract method #build_source"
+        fail 'call to abstract method #build_source'
       end
 
-      def normalize_basename(basename)
-        raise "call to abstract method #normalize_basename"
+      def normalize_basename(_basename)
+        fail 'call to abstract method #normalize_basename'
       end
 
-      def resolve(partial_flag)
-        raise "call to abstract method #resolve"
+      def resolve(_partial_flag)
+        fail 'call to abstract method #resolve'
       end
 
       def template_class
-        raise "call to abstract method #template_class"
+        fail 'call to abstract method #template_class'
       end
     end
   end
 end
-

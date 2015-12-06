@@ -31,9 +31,9 @@ module Ecm
       end
 
       context 'page callbacks' do
-        it "updates associated navigation items when the basename changes" do
-          navigation_item = FactoryGirl.create(:ecm_cms_navigation_item, :url => '/foo')
-          page = FactoryGirl.build :ecm_cms_page, :pathname => '/', :basename => 'bar', :locale => 'de'
+        it 'updates associated navigation items when the basename changes' do
+          navigation_item = FactoryGirl.create(:ecm_cms_navigation_item, url: '/foo')
+          page = FactoryGirl.build :ecm_cms_page, pathname: '/', basename: 'bar', locale: 'de'
           page.ecm_cms_navigation_items << navigation_item
           page.save!
           navigation_item.url.should eq('/de/bar')
@@ -61,7 +61,7 @@ module Ecm
       context '#filename' do
         subject { Ecm::Cms::Page.new }
 
-        it "builds foo.html from basename => foo, handler => html" do
+        it 'builds foo.html from basename => foo, handler => html' do
           subject.basename = 'foo'
           subject.locale   = nil
           subject.handler  = 'html'
@@ -69,7 +69,7 @@ module Ecm
           subject.filename.should eq('foo.html')
         end
 
-        it "builds foo.en.html from basename => foo, locale => en, handler => html" do
+        it 'builds foo.en.html from basename => foo, locale => en, handler => html' do
           subject.basename = 'foo'
           subject.locale   = 'en'
           subject.handler  = 'html'
@@ -78,8 +78,8 @@ module Ecm
         end
       end
 
-      context "#home_page?" do
-        subject { Ecm::Cms::Page.new() }
+      context '#home_page?' do
+        subject { Ecm::Cms::Page.new }
 
         it "should return true if the pathname is '/' and the basename is 'home'" do
           subject.pathname = '/'
@@ -105,4 +105,3 @@ module Ecm
     end
   end
 end
-

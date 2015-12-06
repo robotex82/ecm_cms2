@@ -6,19 +6,18 @@ class Ecm::Cms::PageController < Ecm::Cms::Configuration.base_controller.constan
   # avoid error 500 on missing template
   rescue_from ActionView::MissingTemplate do
     respond_to do |format|
-      format.html {
-        render(:file => "#{Rails.root}/public/404", :formats => [:html],
-                                                    :layout => false,
-                                                    :status => 404
-        )
-      }
+      format.html do
+        render(file: "#{Rails.root}/public/404", formats: [:html],
+               layout: false,
+               status: 404
+              )
+      end
       format.xml  { head :not_found }
       format.any  { head :not_found }
     end
   end
 
   def respond
-    render :template => params[:page]
+    render template: params[:page]
   end
 end
-

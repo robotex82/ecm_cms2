@@ -61,7 +61,7 @@ module Ecm
       context '#filename' do
         subject { Ecm::Cms::Template.new }
 
-        it "builds foo.html from basename => foo, handler => html" do
+        it 'builds foo.html from basename => foo, handler => html' do
           subject.basename = 'foo'
           subject.locale   = nil
           subject.handler  = 'html'
@@ -69,7 +69,7 @@ module Ecm
           subject.filename.should eq('foo.html')
         end
 
-        it "builds foo.en.html from basename => foo, locale => en, handler => html" do
+        it 'builds foo.en.html from basename => foo, locale => en, handler => html' do
           subject.basename = 'foo'
           subject.locale   = 'en'
           subject.handler  = 'html'

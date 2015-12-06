@@ -15,7 +15,6 @@ module Ecm
         it { should validate_presence_of :pathname }
         it { should validate_presence_of :basename }
       end
-
     end
   end
 end

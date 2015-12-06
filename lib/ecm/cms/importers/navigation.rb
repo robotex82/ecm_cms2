@@ -2,7 +2,7 @@ module Ecm
   module Cms
     module Importers
       class Navigation
-        def initialize(yaml, option = {})
+        def initialize(yaml, _option = {})
           @navigations = nil
           @yaml = YAML.load(yaml)
         end
@@ -20,11 +20,8 @@ module Ecm
           @navigations ||= build_navigations
         end
 
-        def yaml
-          @yaml
-        end
+        attr_reader :yaml
       end
     end
   end
 end
-

@@ -6,8 +6,8 @@ module Ecm
 
         # associations
         base.belongs_to :ecm_cms_folder,
-                        :class_name => 'Ecm::Cms::Folder',
-                        :foreign_key => 'ecm_cms_folder_id'
+                        class_name: 'Ecm::Cms::Folder',
+                        foreign_key: 'ecm_cms_folder_id'
 
         # callbacks
         base.after_initialize :set_defaults
@@ -15,16 +15,16 @@ module Ecm
         base.after_save :clear_resolver_cache
 
         # validations
-        base.validates :basename, :presence => true,
-                                  :uniqueness =>  { :scope => [ :pathname, :locale, :format, :handler ] }
-        base.validates :handler, :inclusion => ActionView::Template::Handlers.extensions.map(&:to_s)
-        base.validates :locale, :inclusion => I18n.available_locales.map(&:to_s),
-                                :allow_nil => true,
-                                :allow_blank => true
-        base.validates :format, :inclusion => Mime::SET.symbols.map(&:to_s),
-                                :allow_nil => true,
-                                :allow_blank => true
-        base.validates :pathname, :presence => true
+        base.validates :basename, presence: true,
+                                  uniqueness: { scope: [:pathname, :locale, :format, :handler] }
+        base.validates :handler, inclusion: ActionView::Template::Handlers.extensions.map(&:to_s)
+        base.validates :locale, inclusion: I18n.available_locales.map(&:to_s),
+                                allow_nil: true,
+                                allow_blank: true
+        base.validates :format, inclusion: Mime::SET.symbols.map(&:to_s),
+                                allow_nil: true,
+                                allow_blank: true
+        base.validates :pathname, presence: true
       end
 
       module ClassMethods
@@ -49,8 +49,8 @@ module Ecm
       private
 
       def assert_trailing_slash_on_pathname
-        self.pathname = '/' and return if self.pathname.blank?
-        self.pathname << '/' unless self.pathname.end_with?('/')
+        self.pathname = '/' and return if pathname.blank?
+        pathname << '/' unless pathname.end_with?('/')
       end
 
       def clear_resolver_cache
@@ -60,11 +60,10 @@ module Ecm
 
       def set_defaults
         if new_record?
-          self.locale  ||= I18n.default_locale.to_s
+          self.locale ||= I18n.default_locale.to_s
           self.handler ||= Ecm::Cms::Configuration.default_handlers[self.class.name.demodulize.underscore.to_sym].to_s
         end
       end
     end
   end
 end
-

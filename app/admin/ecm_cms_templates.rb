@@ -7,9 +7,9 @@ ActiveAdmin.register Ecm::Cms::Template do
                 :layout,
                 :locale,
                 :pathname) if Rails.version >= '4.0.0'
-                  
+
   # Menu
-  menu :parent => Proc.new { I18n.t('ecm.cms.active_admin.menu') }.call
+  menu parent: proc { I18n.t('ecm.cms.active_admin.menu') }.call
 
   form do |f|
     f.inputs do
@@ -19,9 +19,9 @@ ActiveAdmin.register Ecm::Cms::Template do
     f.inputs do
       f.input :pathname
       f.input :basename
-      f.input :locale, :as => :select, :collection => I18n.available_locales.map(&:to_s)
-      f.input :format, :as => :select, :collection => Mime::SET.symbols.map(&:to_s)
-      f.input :handler, :as => :select, :collection => ActionView::Template::Handlers.extensions.map(&:to_s)
+      f.input :locale, as: :select, collection: I18n.available_locales.map(&:to_s)
+      f.input :format, as: :select, collection: Mime::SET.symbols.map(&:to_s)
+      f.input :handler, as: :select, collection: ActionView::Template::Handlers.extensions.map(&:to_s)
     end
 
     f.actions
@@ -42,7 +42,7 @@ ActiveAdmin.register Ecm::Cms::Template do
     end
   end
 
-  sidebar Ecm::Cms::Template.human_attribute_name(:details), :only => :show do
+  sidebar Ecm::Cms::Template.human_attribute_name(:details), only: :show do
     attributes_table_for ecm_cms_template do
       # row :folder
       row :pathname
@@ -52,4 +52,3 @@ ActiveAdmin.register Ecm::Cms::Template do
     end
   end # sidebar
 end
-

@@ -1,4 +1,4 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Maintain your gem's version:
 require 'ecm/cms/version'
@@ -53,4 +53,3 @@ Gem::Specification.new do |s|
   # Development Tools
   s.add_development_dependency 'rubocop'
 end
-

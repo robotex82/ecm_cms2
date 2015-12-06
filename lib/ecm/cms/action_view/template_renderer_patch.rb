@@ -1,6 +1,6 @@
 module ActionView
   module TemplateRendererPatch
-    def self.included base
+    def self.included(base)
       base.class_eval do
         alias_method :original_render, :render
         if Rails::VERSION::MAJOR < 4
@@ -26,14 +26,14 @@ module ActionView
             @view = context
             @details = extract_details(options)
             template = determine_template(options)
-            
+
             prepend_formats(template.formats)
-            
+
             @lookup_context.rendered_format ||= (template.formats.first || formats.first)
 
             layout = template.layout if template.respond_to?(:layout)
             layout ||= options[:layout]
-            
+
             render_template(template, layout, options[:locals])
           end
         end
@@ -42,6 +42,4 @@ module ActionView
   end
 end
 
-
 ActionView::TemplateRenderer.send(:include, ActionView::TemplateRendererPatch)
-

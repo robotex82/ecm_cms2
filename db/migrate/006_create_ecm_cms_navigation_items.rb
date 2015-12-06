@@ -5,7 +5,7 @@ class CreateEcmCmsNavigationItems < ActiveRecord::Migration
       t.string :url
       t.string :key
       t.string :options
-      t.text   :properties, null: true
+      t.text :properties, null: true
 
       # associations
       t.references :ecm_cms_navigation

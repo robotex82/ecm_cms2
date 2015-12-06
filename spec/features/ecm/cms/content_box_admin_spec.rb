@@ -4,7 +4,7 @@ feature 'Ecm::Cms::ContentBox admin' do
   include ActiveAdmin::SignInHelper
 
   def set_locale
-   I18n.locale = :en
+    I18n.locale = :en
   end
 
   def set_admin_area_path
@@ -12,7 +12,7 @@ feature 'Ecm::Cms::ContentBox admin' do
   end
 
   def set_resource_path
-    @resource_path = "ecm_cms_content_boxes"
+    @resource_path = 'ecm_cms_content_boxes'
   end
 
   def set_resource_class
@@ -20,7 +20,7 @@ feature 'Ecm::Cms::ContentBox admin' do
   end
 
   def set_resource_factory_name
-    @resource_factory_name = @resource_class.to_s.underscore.gsub('/', '_').to_sym
+    @resource_factory_name = @resource_class.to_s.underscore.tr('/', '_').to_sym
   end
 
   def set_index_check_column
@@ -31,11 +31,11 @@ feature 'Ecm::Cms::ContentBox admin' do
   end
 
   def fill_new_form
-    fill_in "ecm_cms_content_box[name]", :with => "Example content box"
+    fill_in 'ecm_cms_content_box[name]', with: 'Example content box'
   end
 
   def fill_edit_form
-    fill_in "ecm_cms_content_box[name]", :with => "Updated content box"
+    fill_in 'ecm_cms_content_box[name]', with: 'Updated content box'
   end
 
   background do
@@ -125,7 +125,6 @@ feature 'Ecm::Cms::ContentBox admin' do
         page.current_path.should eq("#{@admin_area_path}/#{@resource_path}/#{@resource.to_param}")
       end # scenario
     end # describe 'when filling the form correctly'
-
   end # describe 'edit'
 
   describe 'delete' do
@@ -160,11 +159,10 @@ feature 'Ecm::Cms::ContentBox admin' do
       page.status_code.should eq(200)
     end # scenario
 
-    scenario "should show the resources" do
+    scenario 'should show the resources' do
       @resources.each do |resource|
         page.body.should include(resource.send(@index_check_column.to_sym))
       end
     end # scenario
   end # describe 'index'
 end # feature
-
