@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'twitter-bootstrap-rails'
   s.add_development_dependency 'jquery-rails'
   s.add_development_dependency 'rails-i18n'
+  s.add_development_dependency 'active_admin-awesome_nested_set'
 
   # Tests
   s.add_development_dependency 'capybara'

@@ -32,6 +32,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_admin-awesome_nested_set (0.0.8)
+      rails (>= 3.2.5, < 5.0)
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
       bourbon
@@ -322,6 +324,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin-awesome_nested_set
   activeadmin (= 1.0.0.pre2)
   capybara
   devise
