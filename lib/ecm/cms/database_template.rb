@@ -59,9 +59,9 @@ module Ecm
       end
 
       def set_defaults
-        if self.new_record?
+        if new_record?
           self.locale  ||= I18n.default_locale.to_s
-          self.handler ||= Ecm::Cms::Configuration.default_handlers[:page].to_s
+          self.handler ||= Ecm::Cms::Configuration.default_handlers[self.class.name.demodulize.underscore.to_sym].to_s
         end
       end
     end
