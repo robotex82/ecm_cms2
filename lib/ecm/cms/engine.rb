@@ -12,11 +12,11 @@ module Ecm
       # active admin
       initializer :ecm_cms_engine do
         ::ActiveAdmin.setup do |config|
-          config.load_paths += Dir[File.dirname(__FILE__) + '/active_admin']
+          config.load_paths += Dir[root.join('app', 'admin')]
           config.register_stylesheet 'ecm_cms.css'
           config.register_javascript 'ecm_cms.js'
         end
-      end if defined?(::ActiveAdmin)
+      end if Gem::Specification::find_all_by_name('activeadmin').any?
 
       initializer "ecm_cms.asset_pipeline" do |app|
         app.config.assets.precompile << 'ecm_cms.js'
