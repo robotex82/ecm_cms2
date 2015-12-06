@@ -11,6 +11,10 @@ class Ecm::Cms::Navigation < ActiveRecord::Base
   validates :name, :presence => true,
                    :uniqueness => { :scope => [ :locale ] }
 
+  def ecm_cms_navigation_items_count
+    ecm_cms_navigation_items.count
+  end
+
   def to_s
     "#{self.name} (#{self.locale})"
   end
