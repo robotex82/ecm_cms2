@@ -2,15 +2,15 @@ Ecm::Cms.configure do |config|
   # Set the default handler for pages, partials and templates
   #
   # Default:   config.default_handlers = {
-  #              page:     :texterb,
-  #              partial:  :texterb,
-  #              template: :texterb
+  #              page:     :textile,
+  #              partial:  :textile,
+  #              template: :textile
   #            }
   #
   config.default_handlers = {
-    page:     :texterb,
-    partial:  :texterb,
-    template: :texterb
+    page:     :textile,
+    partial:  :textile,
+    template: :textile
   }
 
   # Set the base controller for the page controller
