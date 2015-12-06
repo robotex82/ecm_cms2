@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'rails', '>= 4.0', '< 5.0'
-  s.add_dependency 'active_admin-awesome_nested_set'
   s.add_dependency 'awesome_nested_set'
   s.add_dependency 'draper'
   s.add_dependency 'RedCloth'

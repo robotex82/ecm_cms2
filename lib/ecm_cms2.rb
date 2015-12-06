@@ -6,7 +6,6 @@ require 'awesome_nested_set'
 require 'redcloth'
 require 'simple-navigation'
 require 'simple-navigation-bootstrap'
-require 'active_admin-awesome_nested_set'
 
 require 'ecm/cms/engine'
 require 'ecm/cms/configuration'
