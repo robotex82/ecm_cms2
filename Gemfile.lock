@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    ecm_cms2 (1.1.1)
+    ecm_cms2 (2.0.0)
       RedCloth
       awesome_nested_set
       draper
-      rails (>= 4.0, < 5.0)
+      rails (>= 4.0)
       simple-navigation
       simple-navigation-bootstrap
 
@@ -340,7 +340,7 @@ DEPENDENCIES
   route_translator
   rspec-rails
   rubocop
-  shoulda-matchers (~> 2.8.0)
+  shoulda-matchers
   sqlite3
   therubyracer
   thin

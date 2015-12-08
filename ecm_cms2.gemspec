@@ -10,12 +10,12 @@ Gem::Specification.new do |s|
   s.authors     = ['Roberto Vasquez Angel']
   s.email       = ['roberto@vasquez-angel.de']
   s.homepage    = 'https://github.com/robotex82/ecm_cms2'
-  s.summary     = 'CMS Module for active admin.'
-  s.description = 'CMS Module for active admin.'
+  s.summary     = 'CMS base module for ruby on rails.'
+  s.description = 'CMS base module for ruby on rails.'
 
   s.files = Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '>= 4.0', '< 5.0'
+  s.add_dependency 'rails', '>= 4.0'
   s.add_dependency 'awesome_nested_set'
   s.add_dependency 'draper'
   s.add_dependency 'RedCloth'
@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   # Tests
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'shoulda-matchers', '~> 2.8.0'
+  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'factory_girl_rails'
 
   # Test automation

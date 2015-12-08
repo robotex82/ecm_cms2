@@ -9,7 +9,6 @@ module Ecm
         c.performance_tool :rspec
       end
 
-      # active admin
       initializer :ecm_cms_engine do
         ::ActiveAdmin.setup do |config|
           config.load_paths += Dir[root.join('app', 'admin')]
