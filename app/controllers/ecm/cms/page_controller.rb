@@ -18,6 +18,12 @@ class Ecm::Cms::PageController < Ecm::Cms::Configuration.base_controller.constan
   end
 
   def respond
-    render template: params[:page]
+    respond_to do |format|
+      format.html { render template: params[:page] }
+      format.pdf do
+        output = render_to_string template: params[:page], formats: [:html, :pdf], layout: false
+        self.response_body = WickedPdf.new.pdf_from_string(output)
+      end if Gem::Specification.find_all_by_name('wicked_pdf').any?
+    end
   end
 end

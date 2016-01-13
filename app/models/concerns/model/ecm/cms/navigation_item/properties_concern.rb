@@ -1,13 +1,13 @@
 require 'active_support/concern'
 
-module Ecm::Cms
-  module NavigationItem::Properties
+module Model::Ecm::Cms::NavigationItem
+  module PropertiesConcern
     extend ActiveSupport::Concern
 
     included do
       serialize :properties, OpenStruct
-      delegate *Configuration.navigation_item_properties, to: :li_attributes
-      delegate *Configuration.navigation_item_properties.collect { |a| "#{a}=".to_sym }, to: :li_attributes
+      delegate *Ecm::Cms::Configuration.navigation_item_properties, to: :li_attributes
+      delegate *Ecm::Cms::Configuration.navigation_item_properties.collect { |a| "#{a}=".to_sym }, to: :li_attributes
     end
 
     def highlights_on

@@ -1,6 +1,8 @@
+require_dependency 'model/ecm/cms/navigation_item/properties_concern'
+
 module Ecm::Cms
   class NavigationItem < ActiveRecord::Base
-    include Properties
+    include Model::Ecm::Cms::NavigationItem::PropertiesConcern
 
     # associations
     belongs_to :ecm_cms_navigation,

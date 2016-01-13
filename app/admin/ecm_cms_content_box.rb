@@ -30,4 +30,4 @@ ActiveAdmin.register Ecm::Cms::ContentBox do
       row :ecm_cms_page_content_blocks_count
     end
   end # sidebar
-end
+end if Gem::Specification.find_all_by_name('activeadmin').any?

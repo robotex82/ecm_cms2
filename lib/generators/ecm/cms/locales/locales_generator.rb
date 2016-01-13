@@ -1,3 +1,5 @@
+require 'rails/generators'
+
 module Ecm
   module Cms
     module Generators

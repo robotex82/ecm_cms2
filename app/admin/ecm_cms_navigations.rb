@@ -1,4 +1,4 @@
-include ActiveAdmin::AwesomeNestedSet::Helper
+include ActiveAdmin::AwesomeNestedSet::Helper if Gem::Specification.find_all_by_name('activeadmin').any?
 
 ActiveAdmin.register Ecm::Cms::Navigation do
   permit_params(:locale,
@@ -61,4 +61,4 @@ ActiveAdmin.register Ecm::Cms::Navigation do
       row :updated_at
     end
   end # sidebar
-end if defined?(::ActiveAdmin)
+end if Gem::Specification.find_all_by_name('activeadmin').any?

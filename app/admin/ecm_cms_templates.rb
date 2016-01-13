@@ -51,4 +51,4 @@ ActiveAdmin.register Ecm::Cms::Template do
       row :updated_at
     end
   end # sidebar
-end
+end if Gem::Specification.find_all_by_name('activeadmin').any?

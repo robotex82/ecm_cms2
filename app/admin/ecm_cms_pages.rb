@@ -105,4 +105,4 @@ ActiveAdmin.register Ecm::Cms::Page do
       row :updated_at
     end
   end # sidebar
-end if defined?(::ActiveAdmin)
+end if Gem::Specification.find_all_by_name('activeadmin').any?

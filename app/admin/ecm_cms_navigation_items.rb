@@ -65,4 +65,4 @@ ActiveAdmin.register Ecm::Cms::NavigationItem do
     column :updated_at
     ActiveAdmin::VERSION[0] < '1' ? default_actions : actions
   end
-end
+end if Gem::Specification.find_all_by_name('activeadmin').any?
