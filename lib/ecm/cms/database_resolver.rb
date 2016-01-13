@@ -28,13 +28,13 @@ module Ecm
         query  = template_class.constantize.where(conditions)
 
         # 2) Check for templates with the given format or format is nil
-        query = query.where(["format = ? OR format = ''", format])
+        query = query.where(["format = ? OR format = '' OR format IS NULL", format])
 
         # 3) Ensure templates with format come first
         query = query.order('format DESC')
 
         # 4) Check for templates with the given locale or locale is nil
-        query = query.where(["locale = ? OR locale = ''", locale])
+        query = query.where(["locale = ? OR locale = '' OR locale IS NULL", locale])
 
         # 5) Ensure templates with locale come first
         query = query.order('locale DESC')
