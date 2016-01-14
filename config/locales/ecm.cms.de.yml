@@ -1,4 +1,7 @@
 de:
+  classes:
+    ecm/cms/add_homepages_service: 'Dienst zum hinzufügen von Homepages'
+    ecm/cms/import_partials_service: 'Dienst zum importieren von Fragmenten'
   ecm:
     cms:
       active_admin:

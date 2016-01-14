@@ -1,5 +1,5 @@
 module Ecm::Cms
-  class ImportPartialsService
+  class ImportPartialsService < Itsf::Services::V2::Service::Base
     class PartialInFileSystem
       def initialize(filename, view_path)
         @filename = filename
@@ -61,29 +61,37 @@ module Ecm::Cms
       attr_reader :view_path
     end
 
-    def self.call(*args)
-      new(*args).do_work
-    end
+    # def self.call(*args)
+    #   new(*args).do_work
+    # end
+    
+    attr_accessor :view_path
 
-    def initialize(options = {})
-      options.reverse_merge!(view_path: Rails.root.join(*%w(app views)))
-      @view_path = options[:view_path]
+    validates :view_path, presence: true
+
+    def initialize(attributes = {})
+      attributes.reverse_merge!(view_path: Rails.root.join(*%w(app views)))
+      # @view_path = options[:view_path]
+      super(attributes)
     end
 
     def do_work
-      puts "Environment: #{Rails.env}"
+      info "Environment: #{Rails.env}"
+      respond unless valid?
       @partials = load_partials
       partials_count = @partials.size
-      puts "Processing #{partials_count} partials in #{view_path}:"
+      info "Processing #{partials_count} partials in #{view_path}:"
       @partials.each_with_index do |partial, index|
-        puts "  (#{index + 1}/#{partials_count}) #{partial.human}"
+        info "  (#{index + 1}/#{partials_count}) #{partial.human}"
         partial = Partial.new(partial.to_partial_attributes_hash)
         if partial.save
-          puts "    Created #{partial.human}"
+          info "    Created #{partial.human}"
         else
-          puts "    Could not create #{partial.human}. Errors: #{partial.errors.full_messages}"
+          info "    Could not create #{partial.human}. Errors: #{partial.errors.full_messages.to_sentence}"
         end
       end
+
+      respond
     end
 
     private
@@ -95,7 +103,5 @@ module Ecm::Cms
     def load_partials_absolute
       Dir.glob("#{view_path}/**/_*.*")
     end
-
-    attr_reader :view_path
   end
 end

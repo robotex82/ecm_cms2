@@ -3,6 +3,7 @@ require 'ecm/cms/action_view/template_patch'
 require 'ecm/cms/action_view/template_renderer_patch'
 
 require 'awesome_nested_set'
+require 'itsf_services'
 require 'redcloth'
 require 'simple-navigation'
 require 'simple-navigation-bootstrap'

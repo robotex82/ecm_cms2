@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.0'
   s.add_dependency 'awesome_nested_set'
   s.add_dependency 'draper'
+  s.add_dependency 'itsf_services'
   s.add_dependency 'RedCloth'
   s.add_dependency 'simple-navigation'
   s.add_dependency 'simple-navigation-bootstrap'
