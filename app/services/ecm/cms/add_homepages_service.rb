@@ -5,7 +5,7 @@ module Ecm::Cms
     validates :locales, presence: true
 
     def initialize(attributes = {})
-      # attributes.reverse_merge!({ locales: I18n.available_locales })
+      attributes.reverse_merge!({ locales: I18n.available_locales })
       attributes[:locales].try(:reject!, &:blank?)
 
       super(attributes)
