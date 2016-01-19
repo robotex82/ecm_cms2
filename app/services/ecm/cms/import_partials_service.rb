@@ -7,7 +7,7 @@ module Ecm::Cms
       end
 
       def pathname
-        @pathname ||= File.dirname(relative_filename)
+        @pathname ||= "#{File.dirname(relative_filename)}/"
       end
 
       def basename
@@ -61,21 +61,16 @@ module Ecm::Cms
       attr_reader :view_path
     end
 
-    # def self.call(*args)
-    #   new(*args).do_work
-    # end
-    
-    attr_accessor :view_path
+    attr_accessor :view_path, :force
 
     validates :view_path, presence: true
 
     def initialize(attributes = {})
-      attributes.reverse_merge!(view_path: Rails.root.join(*%w(app views)))
-      # @view_path = options[:view_path]
+      attributes.reverse_merge!(view_path: Rails.root.join(*%w(app views)), force: false)
       super(attributes)
     end
 
-    def do_work
+    def do_work    
       info "Environment: #{Rails.env}"
       respond unless valid?
       @partials = load_partials
@@ -83,18 +78,35 @@ module Ecm::Cms
       info "Processing #{partials_count} partials in #{view_path}:"
       @partials.each_with_index do |partial, index|
         info "  (#{index + 1}/#{partials_count}) #{partial.human}"
-        partial = Partial.new(partial.to_partial_attributes_hash)
+        attributes_hash = partial.to_partial_attributes_hash
+        partial = force ? find_or_initialize_partial(attributes_hash) : initialize_partial(attributes_hash)
+        new_record = partial.new_record?
+        partial.attributes = attributes_hash
         if partial.save
-          info "    Created #{partial.human}"
+          info "    #{new_record ? 'Created' : 'Updated'} #{partial.human}"
         else
-          info "    Could not create #{partial.human}. Errors: #{partial.errors.full_messages.to_sentence}"
+          info "    Could not #{new_record ? 'create' : 'update'} #{partial.human}. Errors: #{partial.errors.full_messages.to_sentence}"
         end
       end
 
       respond
     end
 
+    def force=(value)
+      @force =  ActiveRecord::Type::Boolean.new.type_cast_from_database(value)
+    end
+
     private
+
+    def find_or_initialize_partial(attributes)
+      attributes = attributes.dup
+      attributes.compact!.delete(:body)
+      Partial.where(attributes).first_or_initialize
+    end
+
+    def initialize_partial(attributes)
+      Partial.new(attributes)
+    end
 
     def load_partials
       load_partials_absolute.collect { |file| PartialInFileSystem.new(file, view_path) }

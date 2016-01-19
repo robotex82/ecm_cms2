@@ -47,4 +47,8 @@ module Ecm::CmsHelper
   def link_to_top
     render partial: '/ecm/cms/link_to_top'
   end
+
+  def cms_page?
+    params[:action] == 'respond' && params.has_key?(:page)
+  end
 end
