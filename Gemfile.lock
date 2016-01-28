@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ecm_cms2 (2.0.0)
+    ecm_cms2 (2.0.2)
       RedCloth
       awesome_nested_set
       draper
