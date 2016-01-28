@@ -10,6 +10,9 @@ module Ecm::CmsHelper
     level_as_array = (level).is_a?(Range) ? level.to_a : [level]
 
     navigation = Ecm::Cms::Navigation.where(name: name.to_s, locale: I18n.locale.to_s).first
+    if navigation.nil? && (locale = Ecm::Cms::Configuration.navigation_locale_fallback.call(name, I18n.locale))
+      navigation = Ecm::Cms::Navigation.where(name: name.to_s, locale: locale).first
+    end
     unless navigation
       return I18n.t('ecm.cms.navigation.messages.not_found', lang: I18n.locale.to_s, name: name.to_s)
     end

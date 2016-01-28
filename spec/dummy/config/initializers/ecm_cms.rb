@@ -34,4 +34,14 @@ Ecm::Cms.configure do |config|
   # Default: config.navigation_item_properties = [:data_add_icon]
   #
   config.navigation_item_properties = [:data_add_icon]
+
+  # Fallback to the given locale, if no navigation is found for the actual locale.
+  # Set to false to disable fallback. Must be a proc. Two params are passend to the
+  # proc: The navigation name and the actual locale.
+  # 
+  # Example: config.navigation_locale_fallback = ->(navigation_name, locale) { navigation_name, localeI18n.locale }
+  # 
+  # Default: config.navigation_locale_fallback = ->(navigation_name, locale) { false }
+  # 
+  config.navigation_locale_fallback = ->(navigation_name, locale) { I18n.default_locale }
 end

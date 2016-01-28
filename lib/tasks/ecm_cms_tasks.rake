@@ -5,5 +5,11 @@ namespace :ecm do
       args.with_defaults(view_path: Rails.root.join(*%(app views)), force: false)
       Ecm::Cms::ImportPartialsService.call(args)
     end
+
+    desc 'Adds homepages for all (or given) locales'
+    task :add_homepages, [:locales] => [:environment] do |_t, args|
+      args.with_defaults(locales: I18n.available_locales)
+      Ecm::Cms::AddHomepagesService.call(args)
+    end
   end
 end

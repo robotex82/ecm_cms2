@@ -5,6 +5,7 @@ PATH
       RedCloth
       awesome_nested_set
       draper
+      itsf_services
       rails (>= 4.0)
       simple-navigation
       simple-navigation-bootstrap
@@ -150,6 +151,8 @@ GEM
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
+    itsf_services (0.2.0)
+      rails (>= 4.0)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -240,7 +243,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     ref (2.0.0)
-    request_store (1.2.1)
+    request_store (1.3.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     route_translator (4.1.0)
@@ -348,4 +351,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
