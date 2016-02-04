@@ -11,7 +11,7 @@ module Ecm
       end
 
       # instance methods go here
-      def find_templates(name, prefix, partial, details)
+      def find_templates(name, prefix, partial, details, outside_app_allowed = false)
         return [] unless resolve(partial)
 
         conditions = {

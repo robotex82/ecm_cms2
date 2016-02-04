@@ -15,9 +15,9 @@ Ecm::Cms.configure do |config|
 
   # Set the base controller for the page controller
   #
-  # Default: config.base_controller = 'ApplicationController'
+  # Default: config.base_controller = 'FrontendController'
   #
-  config.base_controller = 'ApplicationController'
+  config.base_controller = 'FrontendController'
 
   # Set the property keys for navigation items. This keys will be accessible through the create/edit form.
   #
