@@ -20,6 +20,7 @@ class Ecm::Cms::PageController < Ecm::Cms::Configuration.base_controller.constan
   def respond
     respond_to do |format|
       format.html { render template: params[:page] }
+      format.txt  { render template: params[:page], layout: false, formats: [:text] }
       format.pdf do
         output = render_to_string template: params[:page], formats: [:html, :pdf], layout: false
         self.response_body = WickedPdf.new.pdf_from_string(output)

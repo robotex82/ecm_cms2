@@ -25,6 +25,8 @@ module Ecm
         []
       end
 
+      mattr_accessor(:navigation_locale_fallback) { ->(navigation_name, locale) {false} }
+
       def default_handlers=(default_handlers)
         @@default_handlers = HashWithIndifferentAccess.new(default_handlers)
       end

@@ -1,0 +1,8 @@
+
+  # ECM CMS Frontend Routing
+  localized do
+    # This must stay at last position, because it's greedy ;)
+    Ecm::Cms::Routing.routes(self)
+  end
+
+  root to: redirect("/#{I18n.locale}")
