@@ -1,4 +1,7 @@
 en:
+  classes:
+    ecm/cms/add_homepages_service: 'Add homepages service'
+    ecm/cms/import_partials_service: 'Import partials service'
   ecm:
     cms:
       active_admin:
