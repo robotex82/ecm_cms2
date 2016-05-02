@@ -16,10 +16,9 @@ module Ecm
           rendered_body = RedCloth.new(content_block.body).to_html
           output << "<% content_for :#{content_block.content_box_name} do %>#{rendered_body}<% end %>"
         end
-
-        content_for_title = "<% content_for :title do %>#{record.title}<% end %>"
-        content_for_meta_description = "<% content_for :meta_description do %>#{record.meta_description}<% end %>"
-        output << content_for_title << content_for_meta_description
+        
+        output << content_for_title(record)
+        output << content_for_meta_description(record)
 
         output << record.body unless record.body.nil?
 
@@ -36,6 +35,26 @@ module Ecm
 
       def template_class
         'Ecm::Cms::Page'
+      end
+
+      private
+
+      def content_for_title(record)
+        case record.handler
+        when 'haml'
+          "= content_for(:title) { \"#{record.title}\" }\r\n"
+        else
+          "<% content_for :title do %>#{record.title}<% end %>"
+        end
+      end
+
+      def content_for_meta_description(record)
+        case record.handler
+        when 'haml'
+          "= content_for(:meta_description) { \"#{record.meta_description}\" }\r\n"
+        else
+          "<% content_for :meta_description do %>#{record.meta_description}<% end %>"
+        end
       end
     end
   end
