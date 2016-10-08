@@ -1,5 +1,5 @@
 module Ecm
   module Cms
-    VERSION = '3.0.0'
+    VERSION = '2.1.4'
   end
 end
