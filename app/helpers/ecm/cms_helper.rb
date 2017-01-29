@@ -54,4 +54,8 @@ module Ecm::CmsHelper
   def cms_page?
     params[:action] == 'respond' && params.has_key?(:page)
   end
+
+  def current_cms_page?(page)
+    cms_page? && params[:page].to_s == page.to_s
+  end
 end
