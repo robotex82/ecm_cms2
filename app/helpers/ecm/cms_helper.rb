@@ -58,4 +58,8 @@ module Ecm::CmsHelper
   def current_cms_page?(page)
     cms_page? && params[:page].to_s == page.to_s
   end
+
+  def current_cms_page
+    cms_page? ? params[:page].to_s : nil
+  end
 end
