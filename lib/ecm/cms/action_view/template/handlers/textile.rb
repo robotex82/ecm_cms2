@@ -1,7 +1,7 @@
 module ActionView::Template::Handlers
   class Textile
     class_attribute :default_format
-    self.default_format = Mime::HTML
+    self.default_format = Mime[:html]
 
     def erb_handler
       @@erb_handler ||= ActionView::Template.registered_template_handler(:erb)
