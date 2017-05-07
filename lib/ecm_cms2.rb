@@ -10,7 +10,6 @@ require 'simple-navigation-bootstrap'
 
 require 'ecm/cms/engine'
 require 'ecm/cms/configuration'
-require 'ecm/cms/routing'
 
 require 'ecm/cms/database_template'
 
