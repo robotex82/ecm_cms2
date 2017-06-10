@@ -1,4 +1,4 @@
-class CreateEcmCmsFolders < ActiveRecord::Migration
+class CreateEcmCmsFolders < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_folders do |t|
       t.string :basename

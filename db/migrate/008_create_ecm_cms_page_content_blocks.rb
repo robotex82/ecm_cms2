@@ -1,4 +1,4 @@
-class CreateEcmCmsPageContentBlocks < ActiveRecord::Migration
+class CreateEcmCmsPageContentBlocks < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_page_content_blocks do |t|
       t.text :body

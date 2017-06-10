@@ -1,4 +1,4 @@
-class CreateEcmCmsPages < ActiveRecord::Migration
+class CreateEcmCmsPages < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_pages do |t|
       t.string :basename

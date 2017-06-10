@@ -1,4 +1,4 @@
-class CreateEcmCmsPartials < ActiveRecord::Migration
+class CreateEcmCmsPartials < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_partials do |t|
       t.string :basename
