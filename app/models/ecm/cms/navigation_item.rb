@@ -10,7 +10,8 @@ module Ecm::Cms
                foreign_key: 'ecm_cms_navigation_id'
     belongs_to :ecm_cms_page,
                class_name: 'Ecm::Cms::Page',
-               foreign_key: 'ecm_cms_page_id'
+               foreign_key: 'ecm_cms_page_id',
+               optional: true
 
     # awesome nested set
     acts_as_nested_set dependent: :destroy, counter_cache: :children_count, scope: :ecm_cms_navigation_id

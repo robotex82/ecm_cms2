@@ -7,7 +7,8 @@ module Ecm
         # associations
         base.belongs_to :ecm_cms_folder,
                         class_name: 'Ecm::Cms::Folder',
-                        foreign_key: 'ecm_cms_folder_id'
+                        foreign_key: 'ecm_cms_folder_id',
+                        optional: true
 
         # callbacks
         base.after_initialize :set_defaults

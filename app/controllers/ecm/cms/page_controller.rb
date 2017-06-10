@@ -5,15 +5,19 @@ class Ecm::Cms::PageController < Ecm::Cms::Configuration.base_controller.constan
 
   # avoid error 500 on missing template
   rescue_from ActionView::MissingTemplate do
-    respond_to do |format|
-      format.html do
-        render(file: "#{Rails.root}/public/404", formats: [:html],
-               layout: false,
-               status: 404
-              )
+    if params[:page] == 'home'
+      render_fallback_page
+    else
+      respond_to do |format|
+        format.html do
+          render(file: "#{Rails.root}/public/404", formats: [:html],
+                 layout: false,
+                 status: 404
+                )
+        end
+        format.xml  { head :not_found }
+        format.any  { head :not_found }
       end
-      format.xml  { head :not_found }
-      format.any  { head :not_found }
     end
   end
 
@@ -25,6 +29,15 @@ class Ecm::Cms::PageController < Ecm::Cms::Configuration.base_controller.constan
         output = render_to_string template: params[:page], formats: [:html, :pdf], layout: false
         self.response_body = WickedPdf.new.pdf_from_string(output)
       end if Gem::Specification.find_all_by_name('wicked_pdf').any?
+    end
+  end
+
+  private
+
+  def render_fallback_page
+    respond_to do |format|
+      format.html { render :fallback }
+      format.txt  { render :fallback }
     end
   end
 end

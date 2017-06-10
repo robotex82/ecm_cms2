@@ -1,5 +1,5 @@
 # This migration comes from ecm_cms_engine (originally 2)
-class CreateEcmCmsPages < ActiveRecord::Migration
+class CreateEcmCmsPages < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_pages do |t|
       t.string :basename

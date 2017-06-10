@@ -1,5 +1,5 @@
 # This migration comes from ecm_cms_engine (originally 5)
-class CreateEcmCmsNavigations < ActiveRecord::Migration
+class CreateEcmCmsNavigations < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_navigations do |t|
       t.string :locale

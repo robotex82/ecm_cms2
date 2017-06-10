@@ -1,5 +1,5 @@
 # This migration comes from ecm_cms_engine (originally 6)
-class CreateEcmCmsNavigationItems < ActiveRecord::Migration
+class CreateEcmCmsNavigationItems < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_navigation_items do |t|
       t.string :name

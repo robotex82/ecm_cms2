@@ -1,5 +1,5 @@
 # This migration comes from ecm_cms_engine (originally 7)
-class CreateEcmCmsContentBoxes < ActiveRecord::Migration
+class CreateEcmCmsContentBoxes < ActiveRecord::Migration[4.2]
   def change
     create_table :ecm_cms_content_boxes do |t|
       t.string :name
