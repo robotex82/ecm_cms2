@@ -7,7 +7,8 @@ class Ecm::Cms::Navigation < ActiveRecord::Base
 
   # validations
   validates :locale, inclusion: I18n.available_locales.map(&:to_s),
-                     allow_nil: true
+                     allow_nil: true,
+                     allow_blank: true
   validates :name, presence: true,
                    uniqueness: { scope: [:locale] }
 
