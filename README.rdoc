@@ -72,6 +72,19 @@ Warning: *RUNNING THIS WILL DELETE ALL OF YOUR CMS DATA AND REPLACE IT WITH EXAM
       ...
     end
 
+= Using the navigation helper
+
+    # app/controllers/application_controller.rb
+    class ApplicationController < ActionController::Base
+      helper Ecm::CmsHelper
+      ...
+    end
+
+Then you can render navigation in your views:
+
+    # app/views/_navigation.rb
+    = cms_render_navigation(:main)
+
 = Running specs
 
     gem install bundler
