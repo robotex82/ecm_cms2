@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'draper'
   s.add_dependency 'itsf_services'
   s.add_dependency 'RedCloth'
-  s.add_dependency 'simple-navigation'
+  s.add_dependency 'simple-navigation', '>= 4.0.0'
 
   # Documentation
   s.add_development_dependency 'yard'

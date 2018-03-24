@@ -53,8 +53,9 @@ module Ecm::CmsHelper
   end
 
   def build_navigation_item(navigation, item, container_css_class, item_html = {}, link_html = {})
-    options = item.li_attributes.marshal_dump.delete_if { |_key, value| value.blank? }
+    options = {}
     options[:highlights_on] = /#{item.highlights_on}/ if item.highlights_on.present?
+    options[:html] = item.li_attributes.marshal_dump.delete_if { |_key, value| value.blank? }
 
     options.reverse_merge!(html: item_html.dup, link_html: link_html)
 
